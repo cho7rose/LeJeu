@@ -1,0 +1,5 @@
+CREATE TABLE Occupations(WorkID int NOT NULL, Name VARCHAR(255), Income int, Icon VARCHAR(255), PRIMARY KEY(WorkID));
+CREATE TABLE Weapons(WeaponID int NOT NULL, Name VARCHAR(255), AttackFactor FLOAT(2), Icon VARCHAR(255), PRIMARY KEY(WeaponID));
+CREATE TABLE Building_Defenses(DefenseID int NOT NULL, Name VARCHAR(255), DefenseFactor FLOAT(2),  Icon VARCHAR(255), PRIMARY KEY(DefenseID));
+CREATE TABLE Buildings(BuildingID int NOT NULL, xLocation int, yLocation int, Name VARCHAR(255), DefenseID int NOT NULL, Icon VARCHAR(255), PRIMARY KEY (BuildingID), FOREIGN KEY (DefenseID) REFERENCES Building_Defenses(DefenseID));
+CREATE TABLE People(PersonID int NOT NULL, BuildingID int NOT NULL, WeaponID int NOT NULL, WorkID int NOT NULL, Name VARCHAR(255),  Icon VARCHAR(255), PRIMARY KEY(PersonID), FOREIGN KEY (BuildingID) REFERENCES Buildings(BuildingID), FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID), FOREIGN KEY (WorkID) REFERENCES Occupations(WorkID));
